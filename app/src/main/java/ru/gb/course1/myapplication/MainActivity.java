@@ -1,74 +1,73 @@
 package ru.gb.course1.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "@@@";
+    private static final String NUMBER_KEY = "number_key";
 
-    private static final String TAG = "@@@ Main";
+    private EditText numberEditText;
+    private TextView resultTextView;
+
+    private int number = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.open_activity_button).setOnClickListener(v -> {
-            // запустить второй экран
-            Intent intent = new Intent(this, SecondActivity.class);
-            startActivity(intent);
-        });
         Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+
+        numberEditText = findViewById(R.id.number_input_edit_text);
+        resultTextView = findViewById(R.id.result_text_view);
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(NUMBER_KEY)) {
+            number = savedInstanceState.getInt(NUMBER_KEY);
+        }
+
+        showResult();
+
+        numberEditText.setText("OLOLO");
+
+        findViewById(R.id.process_button).setOnClickListener(v -> {
+            number = Integer.parseInt(numberEditText.getText().toString());
+            number = number * number;
+            showResult();
+        });
     }
 
+    @Nullable
     @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart() called");
+    public Object onRetainCustomNonConfigurationInstance() {
+        return super.onRetainCustomNonConfigurationInstance();
     }
 
+    @Nullable
     @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume() called");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause() called");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop() called");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy() called");
+    public Object getLastCustomNonConfigurationInstance() {
+        return super.getLastCustomNonConfigurationInstance();
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d(TAG, "onRestoreInstanceState() called with: savedInstanceState = [" + savedInstanceState + "]");
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState() called with: outState = [" + outState + "]");
+        outState.putInt(NUMBER_KEY, number);
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG, "onRestart() called");
+    private void showResult() {
+        resultTextView.setText(String.valueOf(number));
     }
+
 }
