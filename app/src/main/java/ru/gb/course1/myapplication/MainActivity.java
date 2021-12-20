@@ -1,5 +1,6 @@
 package ru.gb.course1.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
             number = Integer.parseInt(numberEditText.getText().toString());
             number = number * number;
             showResult();
+        });
+
+        findViewById(R.id.show_second_button).setOnClickListener(v -> {
+            Intent intent = SecondActivity.getIntentForLaunch(this, number);
+            startActivity(intent);
         });
     }
 

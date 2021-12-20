@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/number_input_edit_text"
+    <ImageView
         android:layout_width="match_parent"
-        android:saveEnabled="false"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_picture" />
 
-    <Button
-        android:id="@+id/process_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Преобразовать" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/result_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="46sp" />
+        <EditText
+            android:id="@+id/number_input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:saveEnabled="false" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/process_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Преобразовать" />
+
+        <TextView
+            android:id="@+id/result_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="46sp" />
+
+        <Button
+            android:id="@+id/show_second_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Показать" />
+
+    </LinearLayout>
+
+</FrameLayout>
