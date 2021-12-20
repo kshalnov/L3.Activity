@@ -1,26 +1,19 @@
 package ru.gb.course1.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
-    private static final String TAG = "@@@ Main";
+    private static final String TAG = "@@@ Second";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        findViewById(R.id.open_activity_button).setOnClickListener(v -> {
-            // запустить второй экран
-            Intent intent = new Intent(this, SecondActivity.class);
-            startActivity(intent);
-        });
+        setContentView(R.layout.activity_second);
         Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
     }
 
